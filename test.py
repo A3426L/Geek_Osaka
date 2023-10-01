@@ -6,6 +6,12 @@ def connect_database():
     user="aru"
     )
     return connection
+def create_schema(connection,schema_name):
+    create_schema_query = "CREATE SCHEMA IF NOT EXISTS {}".format(schema_name)
+    print(create_schema_query)
+    cursor = connection.cursor()
+    cursor.execute(create_schema_query)
+    connection.commit()
 
 def create_table(connection,schema,table_name):
     query = '''
@@ -40,7 +46,11 @@ def read_table(connection,schema,table_name,element):
 
 
 connection = connect_database()
+# create_schema(connection,"toilet3")
+# insert_table(connection,"toilet1","b","2023-10-01","21:57",1)
+# result = read_table(connection,"toilet1","b","*")
+# print(result)
 
-insert_table(connection,"toilet1","b","2023-10-01","21:57",1)
-result = read_table(connection,"toilet1","b","*")
-print(result)
+
+
+connection.close()
