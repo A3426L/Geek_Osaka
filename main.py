@@ -22,18 +22,18 @@ def create_table(connection,name):
 
 connection=connect_database()
 cursor = connection.cursor()
-create_table(connection,"toilet2")
+# create_table(connection,"toilet2")
 
 
 #データベースの情報
 #print(connection.get_dsn_parameters(),"\n")
 
 #挿入
-insert_query = "INSERT INTO toilet1.a (date, time,count) VALUES (%s, %s, %s)"
-date = "2023-10-01"
-time = "10:01"
-count = 1
-cursor.execute(insert_query, (date,time,count))
+# insert_query = "INSERT INTO toilet1.a (date, time,count) VALUES (%s, %s, %s)"
+# date = "2023-10-01"
+# time = "10:01"
+# count = 1
+# cursor.execute(insert_query, (date,time,count))
 
 #全取り出し
 cursor.execute('SELECT * FROM toilet1.a')

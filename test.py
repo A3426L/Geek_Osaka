@@ -23,12 +23,24 @@ def create_table(connection,schema,table_name):
 def insert_table(connection,schema,table_name,date,time,count):
     insert_query = "INSERT INTO {}.{}(date,time,count)VALUES (%s, %s, %s)".format(schema,table_name)
     print(insert_query)
+    print(date)
+    print(time)
     cursor = connection.cursor()
-    cursor.execute(insert_query, (date, time, count))
+    cursor.execute(insert_query, (date, time, count,))
     connection.commit()
+
+def read_table(connection,schema,table_name,element):
+    read_query = "SELECT {} FROM {}.{}".format(element,schema,table_name)
+    print(read_query)
+    cursor = connection.cursor()
+    cursor.execute(read_query)
+    result = cursor.fetchall()
+    return result
 
 
 
 connection = connect_database()
 
-insert_table(connection,"toilet1","b","2023-10-01","21:32",1)
+insert_table(connection,"toilet1","b","2023-10-01","21:57",1)
+result = read_table(connection,"toilet1","b","*")
+print(result)
